@@ -1,0 +1,59 @@
+body {
+	background-image: url("../images/star-wars-bkgd.jpg");
+	font-family: 'Share Tech Mono', 'Oxygen Mono', 'Fira Mono', 'Overpass Mono', monospace;
+	padding: 1vw;
+}
+
+footer {
+	clear: left;
+	font-size: 1.2em;
+	padding-top: 0.5vw;
+}
+
+h1 {
+	font-size: 4em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+header {
+	margin-right: 2em;
+	text-align: right;
+}
+
+.character-icon {
+	background-color: #FEFFF7;
+	border-color: #0fad1c;
+	border-style: solid;
+	border-width: medium;
+	float: left;
+	text-align: center;
+	width: 14vw;
+}
+
+.character-img {
+	margin: auto;
+	width: 12vw;
+}
+
+.defender {
+	clear: left;
+}
+
+.enemies-available {
+	clear: left;
+}
+
+.fight {
+	clear: left;
+}
+
+.icon-label {
+	padding: 0.1vw;
+}
+
+.your-character {
+	clear: left;
+}

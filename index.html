@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Star Wars Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Mono|Overpass+Mono|Oxygen+Mono|Share+Tech+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script
+    	src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    	integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    	crossorigin="anonymous">
+    </script>
+    <script src="assets/javascript/game.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Star Wars RPG!</h1>
+	</header>
+
+	<div class="icon-start-position">
+		<div id="obi-wan-icon" class="character-icon" value="0">
+			<p class="icon-label">Obi-Wan Kenobi</p>
+			<img src="assets/images/obi-wan.jpg" alt="Obi-Wan Kenobi" class="character-img">
+			<p id="obi-wan-health" class="health-points icon-label" value="0"></p>
+		</div> <!-- end div id="obi-wan-icon" -->
+		<div id="luke-skywalker-icon" class="character-icon" value="1">
+			<p class="icon-label">Luke Skywalker</p>
+			<img src="assets/images/luke-skywalker.jpg" alt="Luke Skywalker" class="character-img">
+			<p id="luke-skywalker-health" class="health-points icon-label" value="1"></p>
+		</div> <!-- end div id="luke-skywalker-icon" -->
+		<div id="darth-sidious-icon" class="character-icon" value="2">
+			<p class="icon-label">Darth Sidious</p>
+			<img src="assets/images/darth-sidious.jpg" alt="Darth Sidious" class="character-img">
+			<p id="darth-sidious-health" class="health-points icon-label" value="2"></p>
+		</div> <!-- end div id="darth-sidious-icon" -->
+		<div id="darth-maul-icon" class="character-icon" value="3">
+			<p class="icon-label">Darth Maul</p>
+			<img src="assets/images/darth-maul.jpg" alt="Darth Maul" class="character-img">
+			<p id="darth-maul-health" class="health-points icon-label" value="3"></p>
+		</div> <!-- end div id="darth-maul-icon" -->
+	</div> <!-- end div class="icon-start-position" -->
+
+	<div class="your-character">
+		<h2>Your Character</h2>
+	</div> <!-- end div class="your-character" -->
+
+	<div class="enemies-available">
+		<h2>Enemies Available to Attack</h2>
+	</div> <!-- end div class="enemies-available" -->
+
+	<div class="fight">
+		<h2>Fight Section</h2>
+		<button id="btn-attack">Attack</button>
+	</div> <!-- end div class="fight" -->
+
+	<div class="defender">
+		<h2>Defender</h2>
+	</div> <!-- end div class="defender" -->
+
+	<footer></footer>
+</body>
+</html>
