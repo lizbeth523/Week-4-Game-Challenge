@@ -26,9 +26,12 @@ $(document).ready(function() {
 			'counterAttackPoints': 25
 		}
 	];
+	// var characterIcons = [];
 	var counterAttackPoints;
 	var enemyChosen = false;
 	var enemyIndex;
+	var numDefeated = 0;
+	var numCharacters = 4;
 	var playerAttackPoints;
 	var playerChosen = false;
 	var playerIndex;
@@ -42,12 +45,13 @@ $(document).ready(function() {
 		if (!playerChosen)
 		{
 			playerChosen = true;
-			playerIndex = $(this).attr("value");
+			playerIndex = $(this).attr("index");
 			icon = $(this).detach();
+			// characterIcons.push(icon);
 			$(".your-character").append(icon);
 			$(".character-icon").each(function( index ) 
 			{
-  				if (($(this).attr("value")) !== playerIndex)
+  				if (($(this).attr("index")) !== playerIndex)
   				{
   					icon = $(this).detach();
   					icon.css({'background-color': 'red', 'border-color': 'black'});
@@ -57,11 +61,12 @@ $(document).ready(function() {
 		}
 		else if (!enemyChosen)
 		{
-			enemyIndex = $(this).attr("value");
+			enemyIndex = $(this).attr("index");
 			if (enemyIndex !== playerIndex)
 			{
 				enemyChosen = true;
 				icon = $(this).detach();
+				// characterIcons.push(icon);
 				icon.css({'background-color': 'black', 'border-color': '#0fad1c', 'color': '#FEFFF7'});
 				$(".defender").append(icon);
 			}
@@ -83,6 +88,7 @@ $(document).ready(function() {
 				$("footer").append("<p>You attacked " + characters[enemyIndex].name + " for " + playerAttackPoints + " damage.</p>");
 				$("footer").append("<p>" + characters[enemyIndex].name + " attacked you back for " + counterAttackPoints + " damage.</p>");
 				characters[playerIndex].attackPoints += characters[playerIndex].counterAttackPoints;
+				checkBattleResults();
 			}
 			else
 			{
@@ -92,15 +98,27 @@ $(document).ready(function() {
 	});
 
 	// Check how many health points the player and enemy have to determine if either have been defeated
-	function checkHealthPoints()
+	function checkBattleResults()
 	{
 		if (characters[playerIndex].healthPoints <= 0)
 		{
-
+			$("footer").empty();
+			$("footer").append("You've been defeated...GAME OVER!!!");
 		}
 		else if (characters[enemyIndex].healthPoints <= 0)
 		{
-			
+			numDefeated++;
+			$("footer").empty();
+			if (numDefeated < numCharacters - 1)
+			{
+				$("footer").append("You have defeated " + characters[enemyIndex].name + ", you can choose to fight another enemy.");
+				enemyChosen = false;
+			}
+			else
+			{
+				$("footer").append("You won!!!! GAME OVER!!!");	
+			}
+			icon.remove();
 		}
 	}
 
@@ -108,19 +126,7 @@ $(document).ready(function() {
 	function updateHealthPoints()
 	{
 		$(".health-points").each(function( index ) {
-			$(this).text(characters[$(this).attr("value")].healthPoints);
+			$(this).text(characters[$(this).attr("index")].healthPoints);
 		});
 	}
-	
-	// var charImage;
-	// function createIcons()
-	// {
-	// 	icon = $("<div>");
-	// 	icon.addClass("character-icon");
-	// 	icon.append(characters[0].name);
-	// 	charImage = $("<img>");
-	// 	charImage.attr("src", characters[0].imgSrc);
-	// 	icon.append(charImage);
-	// 	$(".your-character").append(icon);
-	// }
 });

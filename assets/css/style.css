@@ -57,3 +57,10 @@ header {
 .your-character {
 	clear: left;
 }
+
+@media screen and (max-width: 640px) {
+	h1 {
+		font-size: 3em;
+		text-align: left;
+	}
+}
