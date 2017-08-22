@@ -4,6 +4,10 @@ body {
 	padding: 1vw;
 }
 
+button {
+	clear: left;
+}
+
 footer {
 	clear: left;
 	font-size: 1.2em;
@@ -23,6 +27,10 @@ header {
 	text-align: right;
 }
 
+p {
+	clear: both;
+}
+
 .character-icon {
 	background-color: #FEFFF7;
 	border-color: #0fad1c;
@@ -38,29 +46,32 @@ header {
 	width: 12vw;
 }
 
-.defender {
-	clear: left;
-}
-
-.enemies-available {
-	clear: left;
-}
-
 .fight {
 	clear: left;
+}
+
+.icon-div {
+	clear: left;
+	height: 10vw;
 }
 
 .icon-label {
 	padding: 0.1vw;
 }
 
-.your-character {
-	clear: left;
-}
-
 @media screen and (max-width: 640px) {
 	h1 {
 		font-size: 3em;
 		text-align: left;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}	
+}
+
+@media screen and (max-width: 360px) {
+	.icon-div {
+		height: auto;
 	}
 }
