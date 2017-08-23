@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
+	// Reset button, created in setResetButton() function
 	var btnReset;
+	// Info about all game characters
 	var characters = [
 		{
 			'name': 'Obi-Wan Kenobi',
@@ -27,15 +29,18 @@ $(document).ready(function() {
 			'counterAttackPoints': 25
 		}
 	];
-	var counterAttackPoints;
 	var enemyChosen = false;
+	// Index in characters array of the current enemy
 	var enemyIndex;
 	var gameOver = false;
+	// Character icon showing name, image, and health points
 	var icon;
+	// Number of enemies that have been defeated
 	var numDefeated = 0;
+	// Number of characters in the game
 	var numCharacters = 4;
-	var playerAttackPoints;
 	var playerChosen = false;
+	// Index in characters array of the user's character
 	var playerIndex;
 	
 	updateHealthPoints();
@@ -51,7 +56,7 @@ $(document).ready(function() {
 			icon = $(this).detach();
 			// Move chosen character to 'Your Character' div
 			$(".your-character").append(icon);
-			// For all other remaining characters, change background color and move to 'Enemies Available'
+			// For all other remaining characters, change styling and move to 'Enemies Available'
 			$(".character-icon").each(function( index ) 
 			{
   				if (($(this).attr("index")) !== playerIndex)
@@ -69,51 +74,42 @@ $(document).ready(function() {
 			// Verify that user did not choose same character for both player and enemy
 			if (enemyIndex !== playerIndex)
 			{
-				// Change background color and move to 'Defender'
+				// Change styling and move to 'Defender'
 				enemyChosen = true;
 				icon = $(this).detach();
-				icon.css({'background-color': 'black', 'border-color': '#0fad1c', 'color': '#FEFFF7'});
+				icon.css({'background-color': 'black', 'border-color': '#0FAD1C', 'color': '#FEFFF7'});
 				$(".defender").append(icon);
 			}
 		}
 	});
 
-	// Button click handler
-	$("button").on("click", function() {
-		$("footer").empty();
-		if (this.id === 'btn-attack')
+	// Attack button click handler
+	$("#btn-attack").on("click", function() {
+		// Attack button should only function when it's not Game Over
+		if (!gameOver)
 		{
-			// Attack button should only function when it's not Game Over
-			if (!gameOver)
+			// If player and enemy are both chosen, then player attacks and enemy counter attacks
+			if (playerChosen && enemyChosen)
 			{
-				// If player and enemy are both chosen, then player attacks and enemy counter attacks
-				if (playerChosen && enemyChosen)
-				{
-					playerAttackPoints = characters[playerIndex].attackPoints;
-					counterAttackPoints = characters[enemyIndex].counterAttackPoints;
-					characters[enemyIndex].healthPoints -= playerAttackPoints;
-					characters[playerIndex].healthPoints -= counterAttackPoints;
-					updateHealthPoints();
-					$("footer").append("<p>You attacked " + characters[enemyIndex].name + " for " + playerAttackPoints + " damage.</p>");
-					$("footer").append("<p>" + characters[enemyIndex].name + " attacked you back for " + counterAttackPoints + " damage.</p>");
-					characters[playerIndex].attackPoints += characters[playerIndex].counterAttackPoints;
-					// Check remaining health points to see if either player has been defeated
-					checkBattleResults();
-				}
-				else
-				{
-					$("footer").append("No enemy here");
-				}
+				// Reduce the defender's health points by the number of player's attack points
+				characters[enemyIndex].healthPoints -= characters[playerIndex].attackPoints;
+				// Reduce the player's health points by the number of the defender's counter attack points
+				characters[playerIndex].healthPoints -= characters[enemyIndex].counterAttackPoints;
+				// Display the new health point values
+				updateHealthPoints();
+				$("footer").empty();
+				$("footer").append("<p>You attacked " + characters[enemyIndex].name + " for " + characters[playerIndex].attackPoints + " damage.</p>");
+				$("footer").append("<p>" + characters[enemyIndex].name + " attacked you back for " + characters[enemyIndex].counterAttackPoints + " damage.</p>");
+				// The player's attack points are increased by the original number of attack points after each attack
+				characters[playerIndex].attackPoints += characters[playerIndex].counterAttackPoints;
+				// Check remaining health points to see if either player has been defeated
+				checkBattleResults();
 			}
 			else
 			{
-				setResetButton();
+				$("footer").empty();
+				$("footer").append("No enemy here");
 			}
-		}
-		else if (this.id === 'btn-reset')
-		{
-			// location.reload();
-			alert("reset button was clicked");
 		}
 	});
 
@@ -154,8 +150,6 @@ $(document).ready(function() {
 	    btnReset.on("click", function() {
 	    	location.reload();
 	    });
-	    console.log($("#btn-attack"));
-	    console.log(btnReset);
 	}
 
 	// Update the value displayed on each character icon to reflect the character's current number of health points
