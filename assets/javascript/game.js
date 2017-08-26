@@ -47,10 +47,10 @@ $(document).ready(function() {
 
 	// Character icon click handler
 	$(".character-icon").on("click", function() {
-		$("footer").empty();
 		// If player hasn't been chosen, then character clicked becomes the player
 		if (!playerChosen)
 		{
+			$("footer").empty();
 			playerChosen = true;
 			playerIndex = $(this).attr("index");
 			icon = $(this).detach();
@@ -70,6 +70,7 @@ $(document).ready(function() {
 		// If player has been chosen and enemy has not been chosen, then character clicked becomes the defender
 		else if (!enemyChosen)
 		{
+			$("footer").empty();
 			enemyIndex = $(this).attr("index");
 			// Verify that user did not choose same character for both player and enemy
 			if (enemyIndex !== playerIndex)
